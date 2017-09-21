@@ -9,11 +9,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
+using SimpleInjector;
+using SimpleInjector.Integration.AspNetCore;
+using SimpleInjector.Integration.AspNetCore.Mvc;
 
 namespace Avatar.Services.API
 {
     public class Startup
     {
+        private Container container = new Container();
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,8 +28,9 @@ namespace Avatar.Services.API
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {            
             services.AddMvc();
+            services.SimpleInjector(container);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
@@ -40,6 +46,7 @@ namespace Avatar.Services.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.SimpleInjector(container);
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
