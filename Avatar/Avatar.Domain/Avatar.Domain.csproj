@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Avatar.Data.CrossCutting.IoC\Avatar.Data.CrossCutting.IoC.csproj" />
+    <Compile Remove="IN\**" />
+    <EmbeddedResource Remove="IN\**" />
+    <None Remove="IN\**" />
   </ItemGroup>
 
 </Project>

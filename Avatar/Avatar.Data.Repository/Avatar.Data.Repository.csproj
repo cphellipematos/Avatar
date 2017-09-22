@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Avatar.Data.CrossCutting.IoC\Avatar.Data.CrossCutting.IoC.csproj" />
     <ProjectReference Include="..\Avatar.Domain\Avatar.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Context\" />
   </ItemGroup>
 
 </Project>

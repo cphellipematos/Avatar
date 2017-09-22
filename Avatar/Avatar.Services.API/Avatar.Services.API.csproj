@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
     <PackageReference Include="SimpleInjector" Version="4.0.11" />
     <PackageReference Include="SimpleInjector.Integration.AspNetCore.Mvc" Version="4.0.11" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
@@ -20,8 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Avatar.Data.CrossCutting.IoC\Avatar.Data.CrossCutting.IoC.csproj" />
-    <ProjectReference Include="..\Avatar.Domain\Avatar.Domain.csproj" />
+    <ProjectReference Include="..\Avatar.Application\Avatar.Application.csproj" />
+    <ProjectReference Include="..\Avatar.Infra.CrossCutting.IoC\Avatar.Infra.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\Avatar.Infra.Data.Repository\Avatar.Infra.Data.Repository.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,9 @@
-﻿using SimpleInjector;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Avatar.Application.Interfaces;
+using Avatar.Application.Service;
+using Avatar.Domain.Interfaces.Services;
+using Avatar.Domain.Services;
+using Avatar.Infra.Data.Repository.Context;
+using SimpleInjector;
 
 namespace Avatar.Data.CrossCutting.IoC
 {
@@ -9,7 +11,7 @@ namespace Avatar.Data.CrossCutting.IoC
     {
         public static void ApplicationServices(Container container)
         {
-            //container.Register<Interface, ConcreteClass>(Lifestyle.Scoped);
+
             //container.Register<Data>(Lifestyle.Scoped);
 
             // Lifestyle.Transient => Uma instancia para cada solicitacao;
@@ -17,14 +19,14 @@ namespace Avatar.Data.CrossCutting.IoC
             // Lifestyle.Scoped => Uma instancia unica para o request
 
             // App
-
+            container.Register<IUserAppService, UserAppService>(Lifestyle.Scoped);
 
             // Domain
-
+            container.Register<IUserService, UserService>(Lifestyle.Scoped);
 
 
             // Infra Dados
-
+            container.Register<AvatarContext>(Lifestyle.Scoped);
 
         }
     }
