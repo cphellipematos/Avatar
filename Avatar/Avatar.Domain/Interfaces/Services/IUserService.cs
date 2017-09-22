@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Avatar.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,7 +10,7 @@ namespace Avatar.Domain.Interfaces.Services
         void CreateUser();
         void DeleteUser(int id);
         void GetUserById(int id);
-        void GetAllUsers();
+        IEnumerable<User> GetAllUsers();
         void UpdateUser();
     }
 }

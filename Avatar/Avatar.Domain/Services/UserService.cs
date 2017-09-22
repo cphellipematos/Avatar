@@ -1,4 +1,6 @@
-﻿using Avatar.Domain.Interfaces.Services;
+﻿using Avatar.Domain.Entities;
+using Avatar.Domain.Interfaces.Repository;
+using Avatar.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +9,12 @@ namespace Avatar.Domain.Services
 {
     public class UserService : IUserService
     {
+        private readonly IUserRepository _userRepository;
+
+        public UserService(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
         public void CreateUser()
         {
             throw new NotImplementedException();
@@ -17,9 +25,9 @@ namespace Avatar.Domain.Services
             throw new NotImplementedException();
         }
 
-        public void GetAllUsers()
+        public IEnumerable<User> GetAllUsers()
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAll();
         }
 
         public void GetUserById(int id)

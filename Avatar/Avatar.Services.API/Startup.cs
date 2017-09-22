@@ -24,8 +24,8 @@ namespace Avatar.Services.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<AvatarContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<AvatarContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
             services.SimpleInjector(container);
             services.AddSwaggerGen(c =>

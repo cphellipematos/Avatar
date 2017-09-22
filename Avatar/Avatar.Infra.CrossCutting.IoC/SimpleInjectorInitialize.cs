@@ -1,8 +1,11 @@
 ﻿using Avatar.Application.Interfaces;
 using Avatar.Application.Service;
+using Avatar.Domain.Interfaces.Repository;
 using Avatar.Domain.Interfaces.Services;
 using Avatar.Domain.Services;
 using Avatar.Infra.Data.Repository.Context;
+using Avatar.Infra.Data.Repository.Repository;
+using Microsoft.EntityFrameworkCore;
 using SimpleInjector;
 
 namespace Avatar.Data.CrossCutting.IoC
@@ -24,10 +27,11 @@ namespace Avatar.Data.CrossCutting.IoC
             // Domain
             container.Register<IUserService, UserService>(Lifestyle.Scoped);
 
+            // Infra Repository
+            container.Register<IUserRepository, UserRepository>(Lifestyle.Scoped);
 
             // Infra Dados
             container.Register<AvatarContext>(Lifestyle.Scoped);
-
         }
     }
 }

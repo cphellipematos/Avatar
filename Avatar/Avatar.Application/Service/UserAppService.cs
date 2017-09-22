@@ -26,7 +26,7 @@ namespace Avatar.Application.Service
 
         public IEnumerable<UserViewModel> GetAllUsers()
         {
-            throw new System.NotImplementedException();
+            return UserViewModel.ToViewModelList(_userService.GetAllUsers());            
         }
 
         public UserViewModel GetUserById(int id)
