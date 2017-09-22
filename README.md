@@ -5,7 +5,7 @@ This is a place where I deciced to show my skills and development basis web conc
 
 # Technologies
 - .Net Core C#
-- .EF Core
+- EF Core
 - Simple Injector
 - Restfull API
-- And a person that really love to look for new stuff.
+- And a person that really loves to look for new stuff.
