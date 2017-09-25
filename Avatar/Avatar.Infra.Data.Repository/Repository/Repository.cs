@@ -23,6 +23,8 @@ namespace Avatar.Infra.Data.Repository.Repository
         public virtual void Create(TEntity obj)
         {
             DbSet.Add(obj);
+
+            Db.SaveChanges();
         }
 
         public virtual void Delete(int id)

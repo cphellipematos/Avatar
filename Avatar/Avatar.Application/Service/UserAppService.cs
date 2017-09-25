@@ -14,9 +14,11 @@ namespace Avatar.Application.Service
         {
             _userService = userService;
         }
-        public UserViewModel CreateUser(UserViewModel user)
+        public void CreateUser(UserViewModel userViewModel)
         {
-            throw new System.NotImplementedException();
+       
+            var userDomain = userViewModel.ToDomain(userViewModel);
+            _userService.CreateUser(userDomain);
         }
 
         public void DeleteUser(int id)

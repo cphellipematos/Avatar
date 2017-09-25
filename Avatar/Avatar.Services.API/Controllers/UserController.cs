@@ -16,10 +16,12 @@ namespace Avatar.Services.API.Controllers
     public class UserController : Controller
     {
         private readonly IUserAppService _userAppService;
+        private readonly ICategoryAppService _categoryAppService;
 
-        public UserController(IUserAppService userAppService)
+        public UserController(IUserAppService userAppService, ICategoryAppService categoryAppService)
         {
             _userAppService = userAppService;
+            _categoryAppService = categoryAppService;
         }
         /// <summary>
         /// Create user
@@ -29,15 +31,16 @@ namespace Avatar.Services.API.Controllers
         /// <response code="0">successful operation</response>
         [HttpPost]
         [SwaggerOperation("CreateUser")]
-        public virtual IActionResult CreateUser([FromBody]UserViewModel user)
+        public virtual void CreateUser(UserViewModel user)
         {
             try
             {
-                var newUser = _userAppService.CreateUser(user);
+                _userAppService.CreateUser(user);
+                //var newUser = _userAppService.CreateUser(user);
 
-                newUser = newUser ?? default(UserViewModel);
+                //newUser = newUser ?? default(UserViewModel);
 
-                return new ObjectResult(newUser);
+                //return new ObjectResult(newUser);
             }
             catch (Exception e)
             {
@@ -153,5 +156,6 @@ namespace Avatar.Services.API.Controllers
                 throw new Exception("Message: " + e.Message);
             }
         }
+
     }
 }

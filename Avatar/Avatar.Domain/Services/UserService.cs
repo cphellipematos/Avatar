@@ -15,9 +15,9 @@ namespace Avatar.Domain.Services
         {
             _userRepository = userRepository;
         }
-        public void CreateUser()
+        public void CreateUser(User user)
         {
-            throw new NotImplementedException();
+            _userRepository.Create(user);
         }
 
         public void DeleteUser(int id)

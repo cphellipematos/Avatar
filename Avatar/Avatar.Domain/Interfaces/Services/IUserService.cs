@@ -7,7 +7,7 @@ namespace Avatar.Domain.Interfaces.Services
 {
     public interface IUserService
     {
-        void CreateUser();
+        void CreateUser(User user);
         void DeleteUser(int id);
         void GetUserById(int id);
         IEnumerable<User> GetAllUsers();
