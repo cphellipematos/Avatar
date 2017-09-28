@@ -19,11 +19,15 @@ namespace Avatar.Infra.Data.Repository.Context
         public DbSet<Company> Company { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {            
+        {
+            modelBuilder.AddConfiguration(new CompanyMap());
             modelBuilder.AddConfiguration(new UserCompanyMap());
             modelBuilder.AddConfiguration(new UserMap());
             modelBuilder.AddConfiguration(new CategoryMap());
-            modelBuilder.AddConfiguration(new CompanyMap());
+            modelBuilder.AddConfiguration(new UserCourseMap());
+            modelBuilder.AddConfiguration(new DurationTypeMap());
+            modelBuilder.AddConfiguration(new CourseMap());
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -6,9 +6,11 @@ namespace Avatar.Domain.Entities
 {
     public class User
     {
+        #region Constructors
         public User()
         {
             this.UserCompanies = new List<UserCompany>();
+            this.UserCourses = new List<UserCourse>();
         }
         public User(int id, int idCategory, string name, string email, DateTime insertDate, DateTime updateDate, bool status)
         {
@@ -21,6 +23,9 @@ namespace Avatar.Domain.Entities
             Status = status;
 
         }
+        #endregion
+
+        #region Properties
         public int Id { get; private set; }
         public int ID_Category { get; private set; }
         public string Name { get; private set; }
@@ -34,5 +39,9 @@ namespace Avatar.Domain.Entities
         public virtual Category Category { get; set; }
 
         public virtual ICollection<UserCompany> UserCompanies { get; set; }
+
+        public virtual ICollection<UserCourse> UserCourses { get; set; }
+        #endregion
+
     }
 }

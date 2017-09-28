@@ -13,6 +13,9 @@ namespace Avatar.Infra.Data.Repository.Mapping
         public override void Map(EntityTypeBuilder<UserCompany> builder)
         {
             builder.ToTable("USER_COMPANY");
+
+            builder.Property(x => x.IdCompany).HasColumnName("ID_COMPANY");
+            builder.Property(x => x.IdUser).HasColumnName("ID_USER");
                                          
             builder                
                 .HasOne(x => x.Company)

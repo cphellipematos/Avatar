@@ -4,22 +4,21 @@ using System.Text;
 
 namespace Avatar.Domain.Entities
 {
-    public class UserCompany
+    public class DurationType
     {
         #region Constructors
-        public UserCompany()
+        public DurationType()
         {
-
+            this.Courses = new List<Course>();
         }
         #endregion
-
+        
         #region Properties
         public int Id { get; set; }
-        public int IdCompany { get; set; }
-        public int IdUser { get; set; }
+        public string Name { get; set; }
+        public bool Status { get; set; }
 
-        public virtual Company Company { get; set; }
-        public virtual User User { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
         #endregion
 
     }

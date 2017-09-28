@@ -4,6 +4,7 @@ namespace Avatar.Domain.Entities
 {
     public class Category
     {
+        #region Constructor
         public Category()
         {
             this.User = new List<User>();
@@ -15,6 +16,9 @@ namespace Avatar.Domain.Entities
             Description = description;
             Status = status;
         }
+        #endregion
+
+        #region Properties
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -23,5 +27,7 @@ namespace Avatar.Domain.Entities
         public int UserId { get; set; }
 
         public virtual ICollection<User> User { get; set; }
+        #endregion
+
     }
 }
