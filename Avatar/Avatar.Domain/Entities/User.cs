@@ -8,7 +8,7 @@ namespace Avatar.Domain.Entities
     {
         public User()
         {
-
+            this.UserCompanies = new List<UserCompany>();
         }
         public User(int id, int idCategory, string name, string email, DateTime insertDate, DateTime updateDate, bool status)
         {
@@ -29,6 +29,10 @@ namespace Avatar.Domain.Entities
         public DateTime Update_Date { get; private set; }
         public bool Status { get; private set; }
 
-        public Category Category { get; private set; }
+        public int CategoryId { get; set; }
+
+        public virtual Category Category { get; set; }
+
+        public virtual ICollection<UserCompany> UserCompanies { get; set; }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Avatar.Domain.Entities
 {
@@ -8,7 +6,7 @@ namespace Avatar.Domain.Entities
     {
         public Category()
         {
-
+            this.User = new List<User>();
         }
         public Category(int id, string name, string description, bool status)
         {
@@ -22,6 +20,8 @@ namespace Avatar.Domain.Entities
         public string Description { get; set; }
         public bool Status { get; set; }
 
-        public IEnumerable<User> User { get; set; }
+        public int UserId { get; set; }
+
+        public virtual ICollection<User> User { get; set; }
     }
 }
