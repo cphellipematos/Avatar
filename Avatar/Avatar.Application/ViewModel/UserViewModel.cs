@@ -11,9 +11,6 @@ namespace Avatar.Application.ViewModel
         public int idCategory { get; set; }
         public string name { get; set; }
         public string email { get; set; }
-        public DateTime insertDate { get; set; }
-        public DateTime updateDate { get; set; }
-        public bool status { get; set; }
 
         public static UserViewModel ToViewModel(User user)
         {
@@ -21,8 +18,7 @@ namespace Avatar.Application.ViewModel
             {
                 id = user.Id,
                 name = user.Name,
-                email = user.Email,
-                status = user.Status
+                email = user.Email
             };
         }
 
@@ -43,7 +39,7 @@ namespace Avatar.Application.ViewModel
 
         public User ToDomain(UserViewModel userViewModel)
         {
-            return new User(id, idCategory, name, email, insertDate, updateDate, status);
+            return new User(id, name, email);
         }
     }
 }

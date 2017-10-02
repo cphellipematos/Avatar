@@ -9,7 +9,7 @@ namespace Avatar.Domain.Entities
         #region Constructors
         public Company()
         {
-            this.UserCompany = new List<UserCompany>();
+            
         }
         #endregion
 
@@ -22,7 +22,12 @@ namespace Avatar.Domain.Entities
         public DateTime InsertDate { get; set; }
         public DateTime? UpdateDate { get; set; }
 
-        public virtual ICollection<UserCompany> UserCompany { get; set; }
+        public int DurationTypeId { get; set; }
+        public int UserId { get; set; }
+
+        public virtual DurationType DurationType { get; set; }
+        public virtual User User { get; set; }
+
         #endregion
 
     }

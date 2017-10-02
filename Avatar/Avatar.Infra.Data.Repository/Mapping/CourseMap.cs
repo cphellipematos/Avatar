@@ -15,21 +15,15 @@ namespace Avatar.Infra.Data.Repository.Mapping
             builder.ToTable("COURSE");
 
             builder.Property(x => x.DurationTypeID)
-                .HasColumnName("ID_DURATION_TYPE");
-            builder.Property(x => x.Name)
-                .HasColumnName("NAME");
-            builder.Property(x => x.Company)
-                .HasColumnName("COMPANY");
-            builder.Property(x => x.Description)
-                .HasColumnName("DESCRIPTION");
-            builder.Property(x => x.StartDate)
-                .HasColumnName("START_DATE");
-            builder.Property(x => x.EndDate)
-                .HasColumnName("END_DATE");
-            builder.Property(x => x.InsertDate)
-                .HasColumnName("INSERT_DATE");
-            builder.Property(x => x.UpdateDate)
-                .HasColumnName("UPDATE_DATE");
+                .HasColumnName("IdDurationType");
+
+            builder.Property(x => x.UserId)
+                .HasColumnName("IdUser");
+
+            builder
+                .HasOne(x => x.User)
+                .WithMany(x=>x.Courses);
+                
         }
     }
 }

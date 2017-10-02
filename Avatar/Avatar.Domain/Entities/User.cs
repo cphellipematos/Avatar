@@ -9,38 +9,30 @@ namespace Avatar.Domain.Entities
         #region Constructors
         public User()
         {
-            this.UserCompanies = new List<UserCompany>();
-            this.UserCourses = new List<UserCourse>();
+            this.Companies = new List<Company>();
+            this.Courses = new List<Course>();
         }
-        public User(int id, int idCategory, string name, string email, DateTime insertDate, DateTime updateDate, bool status)
+        public User(int id, string name, string email)
         {
             Id = id;
-            ID_Category = idCategory;
             Name = name;
             Email = email;
-            Insert_Date = insertDate;
-            Update_Date = updateDate;
-            Status = status;
-
+            InsertDate = DateTime.Now;
+            UpdateDate = DateTime.Now;
         }
         #endregion
 
         #region Properties
         public int Id { get; private set; }
-        public int ID_Category { get; private set; }
         public string Name { get; private set; }
         public string Email { get; private set; }
-        public DateTime Insert_Date { get; private set; }
-        public DateTime Update_Date { get; private set; }
+        public DateTime InsertDate { get; private set; }
+        public DateTime UpdateDate { get; private set; }
         public bool Status { get; private set; }
 
-        public int CategoryId { get; set; }
+        public virtual ICollection<Company> Companies { get; set; }
 
-        public virtual Category Category { get; set; }
-
-        public virtual ICollection<UserCompany> UserCompanies { get; set; }
-
-        public virtual ICollection<UserCourse> UserCourses { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
         #endregion
 
     }

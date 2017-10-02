@@ -13,16 +13,15 @@ namespace Avatar.Infra.Data.Repository.Mapping
         public override void Map(EntityTypeBuilder<Company> builder)
         {
             builder.ToTable("COMPANY");
-            builder.Property(x => x.Name)
-                .HasColumnName("NAME");
-            builder.Property(x => x.InsertDate)
-                .HasColumnName("INSERT_DATE");
-            builder.Property(x => x.UpdateDate)
-                .HasColumnName("UPDATE_DATE");
-            builder.Property(x => x.StartDate)
-                .HasColumnName("START_DATE");
-            builder.Property(x => x.EndDate)
-                .HasColumnName("END_DATE");
+
+            builder.Property(x => x.DurationTypeId)
+                .HasColumnName("IdDurationType");
+            builder.Property(x => x.UserId)
+                .HasColumnName("IdUser");
+
+            builder
+                .HasOne(x => x.User)
+                .WithMany(x => x.Companies);
         }
     }
 }

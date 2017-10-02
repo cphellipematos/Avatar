@@ -15,16 +15,13 @@ namespace Avatar.Infra.Data.Repository.Context
         }
         public DbSet<User> User { get; set; }
         public DbSet<Category> Category { get; set; }
-        public DbSet<UserCompany> UserCompany { get; set; }
         public DbSet<Company> Company { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.AddConfiguration(new CompanyMap());
-            modelBuilder.AddConfiguration(new UserCompanyMap());
+            modelBuilder.AddConfiguration(new CompanyMap());            
             modelBuilder.AddConfiguration(new UserMap());
-            modelBuilder.AddConfiguration(new CategoryMap());
-            modelBuilder.AddConfiguration(new UserCourseMap());
+            //modelBuilder.AddConfiguration(new CategoryMap());            
             modelBuilder.AddConfiguration(new DurationTypeMap());
             modelBuilder.AddConfiguration(new CourseMap());
 

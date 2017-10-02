@@ -12,7 +12,7 @@ namespace Avatar.Infra.Data.Repository.Mapping
     {
         public override void Map(EntityTypeBuilder<DurationType> builder)
         {
-            builder.ToTable("DURATION_TYPE");
+            builder.ToTable("DURATIONTYPE");
 
             
         }

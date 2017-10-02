@@ -7,7 +7,7 @@ namespace Avatar.Domain.Entities
         #region Constructor
         public Category()
         {
-            this.User = new List<User>();
+
         }
         public Category(int id, string name, string description, bool status)
         {
@@ -24,9 +24,6 @@ namespace Avatar.Domain.Entities
         public string Description { get; set; }
         public bool Status { get; set; }
 
-        public int UserId { get; set; }
-
-        public virtual ICollection<User> User { get; set; }
         #endregion
 
     }
