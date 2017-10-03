@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Avatar.Application.ViewModel;
@@ -8,14 +11,13 @@ using Avatar.Application.Interfaces;
 namespace Avatar.Services.API.Controllers
 {
     [Produces("application/json")]
-    [Route("api/v1/company")]
-    public class CompanyController : Controller
+    [Route("api/v1/course")]
+    public class CourseController : Controller
     {
-        private readonly ICompanyAppService _companyAppService;
-
-        public CompanyController(ICompanyAppService companyAppService)
+        private readonly ICourseAppService _courseAppService;
+        public CourseController(ICourseAppService courseAppService)
         {
-            _companyAppService = companyAppService;
+            _courseAppService = courseAppService;
         }
         /// <summary>
         /// Create Company
@@ -23,19 +25,19 @@ namespace Avatar.Services.API.Controllers
         /// <remarks>This can only be done by the logged in user.</remarks>
         /// <param name="company">Created company object</param>
         /// <response code="0">successful operation</response>
-        [HttpPost]      
-        [SwaggerOperation("CreateCompany")]
-        public virtual void CreateCompany(CompanyViewModel company)
+        [HttpPost]
+        [SwaggerOperation("CreateCourse")]
+        public virtual void CreateCompany(CourseViewModel course)
         {
             try
             {
-                _companyAppService.CreateCompany(company);
+                _courseAppService.CreateCompany(course);
             }
             catch (Exception e)
             {
                 throw new Exception("Message: " + e.Message);
             }
-            
+
         }
 
 
@@ -71,15 +73,15 @@ namespace Avatar.Services.API.Controllers
         [HttpGet]
         [SwaggerOperation("GetCompanies")]
         [SwaggerResponse(200, type: typeof(CompanyViewModel))]
-        public virtual IActionResult GetAllCompanies()
+        public virtual IActionResult GetCompanies()
         {
             try
             {
-                var companies = _companyAppService.GetAllCompanies();
+                var courses = _courseAppService.GetAllCourses();
 
-                companies = companies ?? default(IEnumerable<CompanyViewModel>);
+                courses = courses ?? default(IEnumerable<CourseViewModel>);
 
-                return new ObjectResult(companies);
+                return new ObjectResult(courses);
             }
             catch (Exception e)
             {

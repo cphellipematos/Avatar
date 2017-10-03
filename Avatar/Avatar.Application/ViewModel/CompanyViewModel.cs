@@ -7,24 +7,20 @@ namespace Avatar.Application.ViewModel
 {
     public class CompanyViewModel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public string Description { get; set; }
-        public DateTime InsertDate { get; set; }
-        public DateTime? UpdateDate { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string role { get; set; }
+        public string description { get; set; }
+        public int id_user { get; set; }
+        public int id_durationType { get; set; }
 
         public static CompanyViewModel ToViewModel(Company company)
         {
             return new CompanyViewModel() {
-                Id = company.Id,
-                Name = company.Name,
-                StartDate = company.StartDate,
-                EndDate = company.EndDate,
-                Description = company.Description,
-                InsertDate = company.InsertDate,
-                UpdateDate = company.UpdateDate
+                id = company.Id,
+                name = company.Name,
+                description = company.Description,
+                role = company.Role
             };
         }
 
@@ -38,6 +34,11 @@ namespace Avatar.Application.ViewModel
             }
 
             return companiesViewModel;
+        }
+
+        public Company ToDomain()
+        {
+            return new Company(id, name, description, role, id_user, id_durationType);
         }
     }
 }

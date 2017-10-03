@@ -11,22 +11,30 @@ namespace Avatar.Domain.Entities
         {
             
         }
+        public Company(int id, string name, string description, string role, int id_user, int id_durationType)
+        {
+            Id = id;
+            Name = name;
+            Role = role;
+            Description = description;
+
+            UserId = id_user;
+            DurationTypeId = id_durationType;
+        }
         #endregion
 
         #region Properties
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public string Description { get; set; }
-        public DateTime InsertDate { get; set; }
-        public DateTime? UpdateDate { get; set; }
+        public int Id { get; private set; }
+        public string Name { get; private set; }
+        public string Role { get; private set; }
+        public string Description { get; private set; }
+        
 
-        public int DurationTypeId { get; set; }
-        public int UserId { get; set; }
+        public virtual int DurationTypeId { get; private set; }
+        public virtual int UserId { get; private set; }
 
-        public virtual DurationType DurationType { get; set; }
-        public virtual User User { get; set; }
+        public virtual DurationType DurationType { get; private set; }
+        public virtual User User { get; private set; }
 
         #endregion
 

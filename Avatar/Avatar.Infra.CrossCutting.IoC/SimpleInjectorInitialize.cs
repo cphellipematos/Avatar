@@ -25,18 +25,21 @@ namespace Avatar.Data.CrossCutting.IoC
             container.Register<ICategoryAppService, CategoryAppService>(Lifestyle.Scoped);
             container.Register<ICompanyAppService, CompanyAppService>(Lifestyle.Scoped);
             container.Register<IDurationTypeAppService, DurationTypeAppService>(Lifestyle.Scoped);
+            container.Register<ICourseAppService, CourseAppService>(Lifestyle.Scoped);
 
             // Domain
             container.Register<IUserService, UserService>(Lifestyle.Scoped);
             container.Register<ICategoryService, CategoryService>(Lifestyle.Scoped);
             container.Register<ICompanyService, CompanyService>(Lifestyle.Scoped);
             container.Register<IDurationTypeService, DurationTypeService>(Lifestyle.Scoped);
+            container.Register<ICourseService, CourseService>(Lifestyle.Scoped);
 
             // Infra Repository
             container.Register<IUserRepository, UserRepository>(Lifestyle.Scoped);
             container.Register<ICategoryRepository, CategoryRepository>(Lifestyle.Scoped);
             container.Register<ICompanyRepository, CompanyRepository>(Lifestyle.Scoped);
             container.Register<IDurationTypeRepository, DurationTypeRepository>(Lifestyle.Scoped);
+            container.Register<ICourseRepository, CourseRepository>(Lifestyle.Scoped);
 
             // Infra Dados
             container.Register<AvatarContext>(Lifestyle.Scoped);

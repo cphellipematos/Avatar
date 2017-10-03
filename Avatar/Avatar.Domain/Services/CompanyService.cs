@@ -17,7 +17,7 @@ namespace Avatar.Domain.Services
         }
         public void CreateCompany(Company company)
         {
-            throw new NotImplementedException();
+            _companyRepository.Create(company);
         }
 
         public void DeleteCompany(int id)

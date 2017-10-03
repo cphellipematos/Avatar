@@ -15,9 +15,10 @@ namespace Avatar.Application.Service
         {
             _companyService = companyService;
         }
+
         public void CreateCompany(CompanyViewModel company)
         {
-            throw new NotImplementedException();
+            _companyService.CreateCompany(company.ToDomain());
         }
 
         public void DeleteCompany(int id)

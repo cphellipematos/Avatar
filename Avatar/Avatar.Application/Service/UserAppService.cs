@@ -17,7 +17,7 @@ namespace Avatar.Application.Service
         public void CreateUser(UserViewModel userViewModel)
         {
        
-            var userDomain = userViewModel.ToDomain(userViewModel);
+            var userDomain = userViewModel.ToDomain();
             _userService.CreateUser(userDomain);
         }
 

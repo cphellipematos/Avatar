@@ -37,7 +37,7 @@ namespace Avatar.Application.ViewModel
             return usersViewModel;
         }
 
-        public User ToDomain(UserViewModel userViewModel)
+        public User ToDomain()
         {
             return new User(id, name, email);
         }
