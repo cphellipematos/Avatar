@@ -43,3 +43,9 @@ api/v1/user/company (PATCH) - Json object on body request
 - This is more than a DAL. At this step we can find CROSS CUTTING information as IoC with Simple Injector or a MAPPING Fluent API, also we have a REPOSITORY PATTERN and Unit of Work (UoW).
 
 As Object Relational Mapping (ORM) is going to be used DAPPER and EnityFramework Core.
+
+
+<br><br>
+
+C Phellipe Matos <br>
+<img src="https://calendarmedia.blob.core.windows.net/assets/3867334a-8bcc-4f44-9684-3fe63020ec24.png" data-canonical-src="https://calendarmedia.blob.core.windows.net/assets/3867334a-8bcc-4f44-9684-3fe63020ec24.png" width="80"/>
