@@ -17,7 +17,7 @@ Future ReactJS application with Redux
 ```
 ### BackEnd
 ```
-Four layers solution (API, Application, Domain, Repository)
+Four layers solution (API, Application, Domain, Infra)
 ```
 
 
@@ -39,7 +39,7 @@ www.localhost/api/v1/users/company (PATCH) - Json object on body request
 #### DOMAIN SERVICES 
 - At this point, can be finded each business rule. If a post can be done, or not. If a get is able go to the next steps.
 
-#### REPOSITORY 
+#### INFRA 
 - This is more than a DAL. At this step we can find CROSS CUTTING information as IoC with Simple Injector or a MAPPING Fluent API, also we have a REPOSITORY PATTERN and Unit of Work (UoW).
 
 As Object Relational Mapping (ORM) is going to be used DAPPER and EnityFramework Core.
