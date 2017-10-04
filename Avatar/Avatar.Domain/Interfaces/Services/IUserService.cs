@@ -11,6 +11,8 @@ namespace Avatar.Domain.Interfaces.Services
         void DeleteUser(int id);
         void GetUserById(int id);
         IEnumerable<User> GetAllUsers();
+        IEnumerable<User> GetAllUserCompaniesByUserId(int userId);
+        IEnumerable<User> GetAllUserCoursesByUserId(int userId);
         void UpdateUser();
     }
 }

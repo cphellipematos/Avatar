@@ -11,6 +11,8 @@ namespace Avatar.Application.ViewModel
         public int idCategory { get; set; }
         public string name { get; set; }
         public string email { get; set; }
+        public IEnumerable<CompanyViewModel> companies { get; set; }
+        public IEnumerable<CourseViewModel> courses { get; set; }
 
         public static UserViewModel ToViewModel(User user)
         {
@@ -18,7 +20,9 @@ namespace Avatar.Application.ViewModel
             {
                 id = user.Id,
                 name = user.Name,
-                email = user.Email
+                email = user.Email,
+                companies = CompanyViewModel.ToViewModelList(user.Companies),
+                courses = CourseViewModel.ToViewModelList(user.Courses)
             };
         }
 

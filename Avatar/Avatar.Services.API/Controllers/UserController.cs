@@ -25,7 +25,6 @@ namespace Avatar.Services.API.Controllers
         {
             _userAppService = userAppService;
             _categoryAppService = categoryAppService;
-            _responseMessage = new TaskCompletionSource<HttpResponseMessage>();
         }
         /// <summary>
         /// Create user
@@ -153,6 +152,66 @@ namespace Avatar.Services.API.Controllers
                 userChanged = userChanged ?? default(UserViewModel);
 
                 return Ok(userChanged);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Error: " + e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Get User Companies
+        /// </summary>
+        /// <remarks></remarks>
+        /// <param name="id">Return User</param>
+        /// <response code="200">Ok/response>        
+        /// <response code="204">No Content</response>
+        /// <response code="400">Bad Request</response>
+        [HttpGet]
+        [Route("{id}/company")]
+        [SwaggerOperation("GetuserCompanies")]
+        [SwaggerResponse(200, type: typeof(IEnumerable<UserViewModel>))]
+        public virtual IActionResult GetAllUserCompaniesByUserId([FromRoute]int id)
+        {
+            try
+            {
+                var userCompanies = _userAppService.GetAllUserCompaniesByUserId(id);
+
+                if (userCompanies == null)
+                    return NoContent();
+
+
+                return Ok(userCompanies);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Error: " + e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Get User Courses
+        /// </summary>
+        /// <remarks></remarks>
+        /// <param name="id">Return User</param>
+        /// <response code="200">Ok/response>        
+        /// <response code="204">No Content</response>
+        /// <response code="400">Bad Request</response>
+        [HttpGet]
+        [Route("{id}/course")]
+        [SwaggerOperation("GetuserCourses")]
+        [SwaggerResponse(200, type: typeof(IEnumerable<UserViewModel>))]
+        public virtual IActionResult GetAllUserCoursesByUserId([FromRoute]int id)
+        {
+            try
+            {
+                var userCompanies = _userAppService.GetAllUserCoursesByUserId(id);
+
+                if (userCompanies == null)
+                    return NoContent();
+
+
+                return Ok(userCompanies);
             }
             catch (Exception e)
             {

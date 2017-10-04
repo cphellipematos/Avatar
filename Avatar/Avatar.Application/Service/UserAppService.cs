@@ -26,6 +26,16 @@ namespace Avatar.Application.Service
             throw new System.NotImplementedException();
         }
 
+        public IEnumerable<UserViewModel> GetAllUserCompaniesByUserId(int userId)
+        {
+            return UserViewModel.ToViewModelList(_userService.GetAllUserCompaniesByUserId(userId));
+        }
+
+        public IEnumerable<UserViewModel> GetAllUserCoursesByUserId(int userId)
+        {
+            return UserViewModel.ToViewModelList(_userService.GetAllUserCoursesByUserId(userId));
+        }
+
         public IEnumerable<UserViewModel> GetAllUsers()
         {
             return UserViewModel.ToViewModelList(_userService.GetAllUsers());            

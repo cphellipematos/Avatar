@@ -25,6 +25,16 @@ namespace Avatar.Domain.Services
             throw new NotImplementedException();
         }
 
+        public IEnumerable<User> GetAllUserCompaniesByUserId(int userId)
+        {
+            return _userRepository.GetAllUserCompaniesByUserId(userId);
+        }
+
+        public IEnumerable<User> GetAllUserCoursesByUserId(int userId)
+        {
+            return _userRepository.GetAllUserCoursesByUserId(userId);
+        }
+
         public IEnumerable<User> GetAllUsers()
         {
             return _userRepository.GetAll();
