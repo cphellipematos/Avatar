@@ -8,6 +8,9 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Avatar.Application.ViewModel;
 using Newtonsoft.Json;
 using Avatar.Application.Interfaces;
+using System.Net.Http;  
+using System.Net;
+
 
 namespace Avatar.Services.API.Controllers
 {
@@ -22,29 +25,31 @@ namespace Avatar.Services.API.Controllers
         {
             _userAppService = userAppService;
             _categoryAppService = categoryAppService;
+            _responseMessage = new TaskCompletionSource<HttpResponseMessage>();
         }
         /// <summary>
         /// Create user
         /// </summary>
         /// <remarks>This can only be done by the logged in user.</remarks>
         /// <param name="user">Created user object</param>
-        /// <response code="0">successful operation</response>
+        /// <response code="200">Successful Operation</response>
+        /// <response code="400">Bad Request</response> 
         [HttpPost]
         [SwaggerOperation("CreateUser")]
-        public virtual void CreateUser(UserViewModel user)
+        public virtual IActionResult CreateUser(UserViewModel user)
         {
             try
             {
+                var testeuser = new UserViewModel();
+                
+                // CHANGE METHOD TO RETURN INSERTED USER
                 _userAppService.CreateUser(user);
-                //var newUser = _userAppService.CreateUser(user);
-
-                //newUser = newUser ?? default(UserViewModel);
-
-                //return new ObjectResult(newUser);
+                
+                return Ok(testeuser);
             }
             catch (Exception e)
             {
-                throw new Exception("Message: " + e.Message);
+                return BadRequest("Error: " + e.Message);
             }
         
         }
@@ -56,20 +61,21 @@ namespace Avatar.Services.API.Controllers
         /// <remarks>This can only be done by the logged in user.</remarks>
         /// <param name="id">The user id that needs to be deleted</param>
         /// <response code="200">OK</response>
-        /// <response code="400">Invalid username supplied</response>
-        /// <response code="404">User not found</response>
+        /// <response code="400">Bad Request</response> 
         [HttpDelete]
         [Route("{id}")]
         [SwaggerOperation("DeleteUser")]
-        public virtual void DeleteUser([FromRoute]int id)
+        public virtual IActionResult DeleteUser([FromRoute]int id)
         {
             try
             {
                 _userAppService.DeleteUser(id);
+
+                return Ok("User was deleted with success!");
             }
             catch (Exception e)
             {
-                throw new Exception("Message: "+ e.Message);
+                return BadRequest("Error: " + e.Message);
             }
         }
 
@@ -80,8 +86,7 @@ namespace Avatar.Services.API.Controllers
         /// <remarks></remarks>
         /// <param name="id">Return User</param>
         /// <response code="200">successful operation</response>
-        /// <response code="400">Invalid username supplied</response>
-        /// <response code="404">User not found</response>
+        /// <response code="400">Bad Request</response> 
         [HttpGet]
         [Route("{id}")]
         [SwaggerOperation("GetUserById")]
@@ -94,11 +99,11 @@ namespace Avatar.Services.API.Controllers
 
                 user = user ?? default(UserViewModel);
 
-                return new ObjectResult(user);
+                return Ok(user);
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                return BadRequest("Error: " + e.Message);
             }
             
         }
@@ -108,8 +113,7 @@ namespace Avatar.Services.API.Controllers
         /// </summary>
         /// <remarks></remarks>
         /// <response code="200">successful operation</response>
-        /// <response code="400">Invalid username supplied</response>
-        /// <response code="404">User not found</response>
+        /// <response code="400">Bad Request</response> 
         [HttpGet]
         [SwaggerOperation("GetUsers")]
         [SwaggerResponse(200, type: typeof(UserViewModel))]
@@ -121,11 +125,11 @@ namespace Avatar.Services.API.Controllers
 
                 users = users ?? default(IEnumerable<UserViewModel>);
 
-                return new ObjectResult(users);
+                return Ok(users);
             }
             catch (Exception e)
             {
-                throw new Exception("Message: " + e.Message);
+                return BadRequest("Error: " + e.Message);
             }           
         }
 
@@ -137,8 +141,7 @@ namespace Avatar.Services.API.Controllers
         /// <param name="id">id of user that need to be updated</param>
         /// <param name="user">Updated user object</param>
         /// <response code="200">OK</response>
-        /// <response code="400">Invalid user supplied</response>
-        /// <response code="404">User not found</response>
+        /// <response code="400">Bad Request</response> 
         [HttpPut]
         [SwaggerOperation("UpdateUser")]
         public virtual IActionResult UpdateUser([FromBody]UserViewModel user)
@@ -149,11 +152,11 @@ namespace Avatar.Services.API.Controllers
 
                 userChanged = userChanged ?? default(UserViewModel);
 
-                return new ObjectResult(userChanged);
+                return Ok(userChanged);
             }
             catch (Exception e)
             {
-                throw new Exception("Message: " + e.Message);
+                return BadRequest("Error: " + e.Message);
             }
         }
 

@@ -20,37 +20,15 @@ namespace Avatar.Services.API.Controllers
         {
             _categoryAppService = categoryAppService;
         }
-        /// <summary>
-        /// Get categories
-        /// </summary>
-        /// <remarks></remarks>
-        /// <response code="200">OK</response>
-        /// <response code="400">Invalid username/password supplied</response>
-        //[HttpGet]
-        //[SwaggerOperation("Category")]
-        //[SwaggerResponse(200, type: typeof(CategoryViewModel))]
-        //public virtual IActionResult GetAllCategories()
-        //{
-        //    try
-        //    {
-        //        var categories = _categoryAppService.GetAllCategories();
-        //        categories = categories ?? default(IEnumerable<CategoryViewModel>);
 
-        //        return new ObjectResult(categories);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new Exception("Message: " + e.Message);
-        //    }
-
-        //}
 
         /// <summary>
         /// Get categories
         /// </summary>
         /// <remarks></remarks>
-        /// <response code="200">OK</response>
-        /// <response code="400">Invalid username/password supplied</response>
+        /// <response code="200">Successful Operation</response>
+        /// <response code="204">No Content</response>
+        /// <response code="400">Bad Request</response> 
         [HttpGet]
         [SwaggerOperation("Category")]
         [SwaggerResponse(200, type: typeof(CategoryViewModel))]
@@ -59,13 +37,15 @@ namespace Avatar.Services.API.Controllers
             try
             {
                 var categories = _categoryAppService.GetAllCategories();
-                categories = categories ?? default(IEnumerable<CategoryViewModel>);
 
-                return new ObjectResult(categories);
+                if (categories == null)
+                    return NoContent();
+
+                return Ok(categories);
             }
             catch (Exception e)
             {
-                throw new Exception("Message: " + e.Message);
+                return BadRequest("Error: " + e.Message);
             }
 
         }
@@ -75,23 +55,22 @@ namespace Avatar.Services.API.Controllers
         /// </summary>
         /// <remarks>This can only be done by the logged in user.</remarks>
         /// <param name="user">Created category object</param>
-        /// <response code="0">successful operation</response>
+        /// <response code="200">Successful Operation</response>
+        /// <response code="204">No Content</response>
+        /// <response code="400">Bad Request</response> 
         [HttpPost]
         [SwaggerOperation("CreateCategory")]
-        public virtual void CreateCategory(CategoryViewModel category)
+        public virtual IActionResult CreateCategory(CategoryViewModel category)
         {
             try
             {
                 _categoryAppService.CreateCategory(category);
-                //var newUser = _userAppService.CreateUser(user);
 
-                //newUser = newUser ?? default(UserViewModel);
-
-                //return new ObjectResult(newUser);
+                return Ok();
             }
             catch (Exception e)
             {
-                throw new Exception("Message: " + e.Message);
+                return BadRequest("Error: " + e.Message);
             }
 
 

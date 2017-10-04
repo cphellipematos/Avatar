@@ -30,9 +30,9 @@ namespace Avatar.Services.API.Controllers
         /// Get users
         /// </summary>
         /// <remarks></remarks>
-        /// <response code="200">successful operation</response>
-        /// <response code="400">Invalid username supplied</response>
-        /// <response code="404">User not found</response>
+        /// <response code="200">Successful Operation</response>
+        /// <response code="204">No Content</response>
+        /// <response code="400">Bad Request</response> 
         [HttpGet]
         [SwaggerOperation("GetDurationType")]
         [SwaggerResponse(200, type: typeof(DurationTypeViewModel))]
@@ -42,13 +42,15 @@ namespace Avatar.Services.API.Controllers
             {
                 var durationTypes = _durationTypeAppService.GetAllDurationType();
 
-                durationTypes = durationTypes ?? default(IEnumerable<DurationTypeViewModel>);
 
-                return new ObjectResult(durationTypes);
+                if (durationTypes == null)
+                    return NoContent();
+
+                return Ok(durationTypes);
             }
             catch (Exception e)
             {
-                throw new Exception("Message: " + e.Message);
+                return BadRequest("Error: " + e.Message);
             }
         }
         #endregion
