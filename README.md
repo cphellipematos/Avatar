@@ -23,13 +23,13 @@ Four layers solution (API, Application, Domain, Infra)
 
 #### API 
 - Here you can find some endpoints to get, update and post information.
-- Swagger documentation provider. www.localhost/swagger
+- Swagger documentation provider.
 ```
-www.localhost/api/v1/users/company (GET)
-www.localhost/api/v1/users/company/{id} (GET)
-www.localhost/api/v1/users/company (POST) - Json object on body request
-www.localhost/api/v1/users/company (UPDATE) - Json object on body request
-www.localhost/api/v1/users/company (PATCH) - Json object on body request
+api/v1/users/company (GET)
+api/v1/users/company/{id} (GET)
+api/v1/users/company (POST) - Json object on body request
+api/v1/users/company (UPDATE) - Json object on body request
+api/v1/users/company (PATCH) - Json object on body request
 ```
 
 #### APPLICATION 
