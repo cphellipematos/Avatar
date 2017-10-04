@@ -25,11 +25,11 @@ Four layers solution (API, Application, Domain, Infra)
 - Here you can find some endpoints to get, update and post information.
 - Swagger documentation provider.
 ```
-api/v1/users/company (GET)
-api/v1/users/company/{id} (GET)
-api/v1/users/company (POST) - Json object on body request
-api/v1/users/company (UPDATE) - Json object on body request
-api/v1/users/company (PATCH) - Json object on body request
+api/v1/user/company (GET)
+api/v1/user/company/{id} (GET)
+api/v1/user/company (POST) - Json object on body request
+api/v1/user/company (UPDATE) - Json object on body request
+api/v1/user/company (PATCH) - Json object on body request
 ```
 
 #### APPLICATION 
