@@ -12,12 +12,12 @@ namespace Avatar.Application.ViewModel
         public string company { get; set; }
         public string description { get; set; }
 
-        public int id_user { get; set; }
-        public int id_durationType { get; set; }
+        public int idUser { get; set; }
+        public int idDurationType { get; set; }
 
         public Course ToDomain()
         {
-            return new Course(id, name, company, description, id_user, id_durationType);
+            return new Course(id, name, company, description, idUser, idDurationType);
         }
 
         public static CourseViewModel ToViewModel(Course course)
@@ -27,8 +27,8 @@ namespace Avatar.Application.ViewModel
                 name = course.Name,
                 company = course.Company,
                 description = course.Description,
-                id_user = course.UserId,
-                id_durationType = course.DurationTypeID
+                idUser = course.UserId,
+                idDurationType = course.DurationTypeID
             };
         }
 

@@ -6,6 +6,11 @@ namespace Avatar.Domain.Entities
     public class Course
     {
         #region Constructors
+        public Course()
+        {
+
+        }
+
         public Course(int id, string name, string company, string description, int id_user, int id_durationType)
         {
             Id = id;

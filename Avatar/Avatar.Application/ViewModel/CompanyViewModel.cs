@@ -11,8 +11,8 @@ namespace Avatar.Application.ViewModel
         public string name { get; set; }
         public string role { get; set; }
         public string description { get; set; }
-        public int id_user { get; set; }
-        public int id_durationType { get; set; }
+        public int idUser { get; set; }
+        public int idDurationType { get; set; }
 
         public static CompanyViewModel ToViewModel(Company company)
         {
@@ -38,7 +38,7 @@ namespace Avatar.Application.ViewModel
 
         public Company ToDomain()
         {
-            return new Company(id, name, description, role, id_user, id_durationType);
+            return new Company(id, name, description, role, idUser, idDurationType);
         }
     }
 }
