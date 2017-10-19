@@ -16,39 +16,13 @@ namespace Avatar.Application.ViewModel
         public int idUser { get; set; }
         public int idDurationType { get; set; }
 
-        public CreateCourseCommand ToCreateCourseCommand() {
+        public CreateCourseCommand ToCreateCommand()
+        {
             return new CreateCourseCommand(name, company, description, idDurationType, idUser);
         }
-        public UpdateCourseCommand ToUpdateCourseCommand()
+        public UpdateCourseCommand ToUpdateCommand()
         {
             return new UpdateCourseCommand(id, name, company, description, idUser, idDurationType);
-        }
-
-        public static CourseViewModel ToViewModel(Course course)
-        {
-            return new CourseViewModel() {
-                id = course.Id,
-                name = course.Name,
-                company = course.Company,
-                description = course.Description,
-                idUser = course.UserId,
-                idDurationType = course.DurationTypeID
-            };
-        }
-
-        public static IEnumerable<CourseViewModel> ToViewModelList(IEnumerable<Course> courses)
-        {
-            if (courses == null)
-                return new List<CourseViewModel>();
-
-            var coursesViewModel = new List<CourseViewModel>();
-
-            foreach (var course in courses)
-            {
-                coursesViewModel.Add(ToViewModel(course));
-            }
-
-            return coursesViewModel;
         }
 
     }

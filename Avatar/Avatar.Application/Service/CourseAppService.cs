@@ -21,7 +21,7 @@ namespace Avatar.Application.Service
 
         public Command CreateCourse(CourseViewModel course)
         {
-            var courseCommand = course.ToCreateCourseCommand();
+            var courseCommand = course.ToCreateCommand();
             new CreateCourseService(courseCommand, _courseRepository);
 
             return courseCommand;
@@ -48,7 +48,7 @@ namespace Avatar.Application.Service
 
         public Command UpdateCourse(CourseViewModel course)
         {
-            var courseCommand = course.ToUpdateCourseCommand();
+            var courseCommand = course.ToUpdateCommand();
             new UpdateCourseService(courseCommand, _courseRepository);
 
             return courseCommand;

@@ -25,3 +25,4 @@ namespace Avatar.Application.ViewModel
         }
     }
 }
+    

@@ -15,43 +15,15 @@ namespace Avatar.Application.ViewModel
         public int idUser { get; set; }
         public int idDurationType { get; set; }
 
-
-        public CreateCompanyCommand ToCreateCompanyCommand()
+        public CreateCompanyCommand ToCreateCommand()
         {
             return new CreateCompanyCommand(id, name, role, description, idUser, idDurationType);
         }
 
-        public UpdateCompanyCommand ToUpdateCompanyCommand()
+        public UpdateCompanyCommand ToUpdateCommand()
         {
             return new UpdateCompanyCommand(id, name, role, description, idUser, idDurationType);
         }
 
-        public static CompanyViewModel ToViewModel(Company company)
-        {
-            return new CompanyViewModel()
-            {
-                id = company.Id,
-                name = company.Name,
-                description = company.Description,
-                role = company.Role
-            };
-        }
-
-        public static IEnumerable<CompanyViewModel> ToViewModelList(IEnumerable<Company> companies)
-        {
-            var companiesViewModel = new List<CompanyViewModel>();
-
-            foreach (var company in companies)
-            {
-                companiesViewModel.Add(ToViewModel(company));
-            }
-
-            return companiesViewModel;
-        }
-
-        public Company ToDomain()
-        {
-            return new Company(name, description, role, idUser, idDurationType);
-        }
     }
 }

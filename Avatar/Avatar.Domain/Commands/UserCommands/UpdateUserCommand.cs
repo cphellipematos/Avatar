@@ -33,7 +33,7 @@ namespace Avatar.Domain.Commands.UserCommands
 
         public User ToDomain()
         {
-            return new User(this.Name, this.Email);           
+            return new User(Name,Email);           
         }
 
         private void Validate()

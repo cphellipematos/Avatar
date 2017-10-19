@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Service\BaseAppService.cs" />
+    <Compile Remove="ViewModel\CategoryViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Avatar.Domain\Avatar.Domain.csproj" />
   </ItemGroup>
 

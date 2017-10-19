@@ -22,7 +22,7 @@ namespace Avatar.Application.Service
 
         public Command CreateCompany(CompanyViewModel company)
         {
-            var companyCommand = company.ToCreateCompanyCommand();
+            var companyCommand = company.ToCreateCommand();
             new CreateCompanyService(companyCommand, _companyRepository);
 
             return companyCommand;
@@ -51,7 +51,7 @@ namespace Avatar.Application.Service
 
         public Command UpdateCompany(CompanyViewModel company)
         {
-            var companyCommand = company.ToUpdateCompanyCommand();
+            var companyCommand = company.ToUpdateCommand();
             new UpdateCompanyService(companyCommand, _companyRepository);
 
             return companyCommand;
