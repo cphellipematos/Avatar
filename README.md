@@ -1,7 +1,10 @@
 # Avatar
 My own avatar website.
+### IN PROGRESS ###
 
-This is a place where I decided to show my skills and development basis web concepts. Here You can find some concepts as SOLID, OOP, Clean Code and Repository Pattern. 
+This is a place where I decided to show my skills and development basis web concepts. Here You can find some concepts as SOLID, OOP, Clean Code, Domain Notification, Fluent Mapping and Repository Pattern. 
+
+Domain Notification reference - https://github.com/andrebaltieri/DomainNotificationHelperCore
 
 # Technologies
 - .Net Core C#
@@ -33,7 +36,9 @@ api/v1/user/company (PATCH) - Json object on body request
 ```
 
 #### APPLICATION 
-- Responsable to convert a ViewModel to a Domain and Domain to ViewModel.
+- Responsable to call Commands and Services.
+    - Each command is a request information that composes a Service Validation.
+    
 -  This layer can be compared with a quarterback football player or a number 10 soccer player. Application calls behavours and reponsabilities of each "Domain Service".
 
 #### DOMAIN SERVICES 
