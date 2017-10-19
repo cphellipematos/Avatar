@@ -4,7 +4,9 @@ using Avatar.Domain.Interfaces.Repository;
 using Avatar.Domain.Interfaces.Services;
 using Avatar.Domain.Services;
 using Avatar.Infra.Data.Repository.Context;
+using Avatar.Infra.Data.Repository.Interfaces;
 using Avatar.Infra.Data.Repository.Repository;
+using Avatar.Infra.Data.Repository.UoW;
 using SimpleInjector;
 
 namespace Avatar.Data.CrossCutting.IoC
@@ -20,29 +22,23 @@ namespace Avatar.Data.CrossCutting.IoC
             // Lifestyle.Singleton => Uma instancia unica para a classe
             // Lifestyle.Scoped => Uma instancia unica para o request
 
+            // UoW
+            container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
+
             // App
             container.Register<IUserAppService, UserAppService>(Lifestyle.Scoped);
-            container.Register<ICategoryAppService, CategoryAppService>(Lifestyle.Scoped);
             container.Register<ICompanyAppService, CompanyAppService>(Lifestyle.Scoped);
             container.Register<IDurationTypeAppService, DurationTypeAppService>(Lifestyle.Scoped);
-            container.Register<ICourseAppService, CourseAppService>(Lifestyle.Scoped);
-
-            // Domain
-            container.Register<IUserService, UserService>(Lifestyle.Scoped);
-            container.Register<ICategoryService, CategoryService>(Lifestyle.Scoped);
-            container.Register<ICompanyService, CompanyService>(Lifestyle.Scoped);
-            container.Register<IDurationTypeService, DurationTypeService>(Lifestyle.Scoped);
-            container.Register<ICourseService, CourseService>(Lifestyle.Scoped);
+            container.Register<ICourseAppService, CourseAppService>(Lifestyle.Scoped);         
 
             // Infra Repository
             container.Register<IUserRepository, UserRepository>(Lifestyle.Scoped);
-            container.Register<ICategoryRepository, CategoryRepository>(Lifestyle.Scoped);
             container.Register<ICompanyRepository, CompanyRepository>(Lifestyle.Scoped);
             container.Register<IDurationTypeRepository, DurationTypeRepository>(Lifestyle.Scoped);
             container.Register<ICourseRepository, CourseRepository>(Lifestyle.Scoped);
 
             // Infra Dados
-            container.Register<AvatarContext>(Lifestyle.Scoped);
+            container.Register<AvatarContext>(Lifestyle.Scoped);                       
         }
     }
 }

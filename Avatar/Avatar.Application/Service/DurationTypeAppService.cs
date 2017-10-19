@@ -4,24 +4,26 @@ using System.Collections.Generic;
 using System.Text;
 using Avatar.Application.ViewModel;
 using Avatar.Domain.Interfaces.Services;
+using Avatar.Domain.Interfaces.Repository;
+using Avatar.Domain.Commands.DurationTypeCommands;
 
 namespace Avatar.Application.Service
 {
     public class DurationTypeAppService : IDurationTypeAppService
     {
         #region Properties
-        private readonly IDurationTypeService _durationTypeService;
+        private readonly IDurationTypeRepository _durationTypeRepository;
         #endregion
 
-        public DurationTypeAppService(IDurationTypeService durationTypeService)
-        {
-            _durationTypeService = durationTypeService;
+        public DurationTypeAppService(IDurationTypeRepository durationTypeRepository)
+        {            
+            _durationTypeRepository = durationTypeRepository;
         }
 
 
-        public IEnumerable<DurationTypeViewModel> GetAllDurationType()
+        public IEnumerable<GetDurationTypeCommand> GetAllDurationType()
         {
-            return DurationTypeViewModel.ToViewModelList(_durationTypeService.GetAllDurationType());
+            return new GetDurationTypeCommand().ToCommandList(_durationTypeRepository.GetAll());
         }
     }
 }

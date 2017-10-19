@@ -9,6 +9,7 @@ namespace Avatar.Domain.Interfaces.Repository
     {
         IEnumerable<User> GetAllUserCompaniesByUserId(int userId);
         IEnumerable<User> GetAllUserCoursesByUserId(int userId);
+        User GetUserByEmail(string email);
     }
 
 

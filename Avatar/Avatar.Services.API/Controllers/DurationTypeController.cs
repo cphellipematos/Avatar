@@ -7,19 +7,21 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Avatar.Application.ViewModel;
 using Avatar.Application.Interfaces;
+using Avatar.Infra.Data.Repository.Interfaces;
 
 namespace Avatar.Services.API.Controllers
 {
     [Produces("application/json")]
     [Route("api/v1/duration/type")]
-    public class DurationTypeController : Controller
+    public class DurationTypeController : BaseController
     {
         #region Properties
         private readonly IDurationTypeAppService _durationTypeAppService;
         #endregion
 
         #region Constructors
-        public DurationTypeController(IDurationTypeAppService durationTypeAppService)
+        public DurationTypeController(IDurationTypeAppService durationTypeAppService, IUnitOfWork uow)
+            :base(uow)
         {
             _durationTypeAppService = durationTypeAppService;
         }
@@ -40,13 +42,9 @@ namespace Avatar.Services.API.Controllers
         {
             try
             {
-                var durationTypes = _durationTypeAppService.GetAllDurationType();
+                var durationTypesCommand = _durationTypeAppService.GetAllDurationType();
 
-
-                if (durationTypes == null)
-                    return NoContent();
-
-                return Ok(durationTypes);
+                return ReturnResponse(durationTypesCommand);
             }
             catch (Exception e)
             {

@@ -10,21 +10,20 @@ using Newtonsoft.Json;
 using Avatar.Application.Interfaces;
 using System.Net.Http;  
 using System.Net;
-
+using Avatar.Infra.Data.Repository.Interfaces;
 
 namespace Avatar.Services.API.Controllers
 {
     [Produces("application/json")]
     [Route("api/v1/user")]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly IUserAppService _userAppService;
-        private readonly ICategoryAppService _categoryAppService;
 
-        public UserController(IUserAppService userAppService, ICategoryAppService categoryAppService)
+        public UserController(IUserAppService userAppService, IUnitOfWork uow)
+            :base(uow)
         {
             _userAppService = userAppService;
-            _categoryAppService = categoryAppService;
         }
         /// <summary>
         /// Create user
@@ -39,18 +38,15 @@ namespace Avatar.Services.API.Controllers
         {
             try
             {
-                var testeuser = new UserViewModel();
-                
-                // CHANGE METHOD TO RETURN INSERTED USER
-                _userAppService.CreateUser(user);
-                
-                return Ok(testeuser);
+                var serverCommand = _userAppService.CreateUser(user);
+                return ReturnResponse(serverCommand, user, null);
+
             }
             catch (Exception e)
             {
                 return BadRequest("Error: " + e.Message);
             }
-        
+
         }
 
 
@@ -68,9 +64,8 @@ namespace Avatar.Services.API.Controllers
         {
             try
             {
-                _userAppService.DeleteUser(id);
-
-                return Ok("User was deleted with success!");
+                var serverCommand = _userAppService.DeleteUser(id);
+                return ReturnResponse(serverCommand, "User Deleted!", null);
             }
             catch (Exception e)
             {
@@ -94,11 +89,8 @@ namespace Avatar.Services.API.Controllers
         {
             try
             {
-                var user = _userAppService.GetUserById(id);
-
-                user = user ?? default(UserViewModel);
-
-                return Ok(user);
+               var command = _userAppService.GetUserById(id);
+               return ReturnResponse(command, command, null);
             }
             catch (Exception e)
             {
@@ -116,16 +108,13 @@ namespace Avatar.Services.API.Controllers
         [HttpGet]
         [SwaggerOperation("GetUsers")]
         [SwaggerResponse(200, type: typeof(UserViewModel))]
-        public virtual IActionResult GetUsers()
+        public virtual IActionResult GetAllUsers()
         {
             try
             {
-                var users = _userAppService.GetAllUsers();
-
-                users = users ?? default(IEnumerable<UserViewModel>);
-
-                return Ok(users);
-            }
+                var usersCommand = _userAppService.GetAllUsers();
+                return ReturnResponse(usersCommand);
+           }
             catch (Exception e)
             {
                 return BadRequest("Error: " + e.Message);
@@ -147,71 +136,9 @@ namespace Avatar.Services.API.Controllers
         {
             try
             {
-                var userChanged = _userAppService.UpdateUser(user);
+                var userCommand = _userAppService.UpdateUser(user);
 
-                userChanged = userChanged ?? default(UserViewModel);
-
-                return Ok(userChanged);
-            }
-            catch (Exception e)
-            {
-                return BadRequest("Error: " + e.Message);
-            }
-        }
-
-        /// <summary>
-        /// Get User Companies
-        /// </summary>
-        /// <remarks></remarks>
-        /// <param name="id">Return User</param>
-        /// <response code="200">Ok/response>        
-        /// <response code="204">No Content</response>
-        /// <response code="400">Bad Request</response>
-        [HttpGet]
-        [Route("{id}/company")]
-        [SwaggerOperation("GetuserCompanies")]
-        [SwaggerResponse(200, type: typeof(IEnumerable<UserViewModel>))]
-        public virtual IActionResult GetAllUserCompaniesByUserId([FromRoute]int id)
-        {
-            try
-            {
-                var userCompanies = _userAppService.GetAllUserCompaniesByUserId(id);
-
-                if (userCompanies == null)
-                    return NoContent();
-
-
-                return Ok(userCompanies);
-            }
-            catch (Exception e)
-            {
-                return BadRequest("Error: " + e.Message);
-            }
-        }
-
-        /// <summary>
-        /// Get User Courses
-        /// </summary>
-        /// <remarks></remarks>
-        /// <param name="id">Return User</param>
-        /// <response code="200">Ok/response>        
-        /// <response code="204">No Content</response>
-        /// <response code="400">Bad Request</response>
-        [HttpGet]
-        [Route("{id}/course")]
-        [SwaggerOperation("GetuserCourses")]
-        [SwaggerResponse(200, type: typeof(IEnumerable<UserViewModel>))]
-        public virtual IActionResult GetAllUserCoursesByUserId([FromRoute]int id)
-        {
-            try
-            {
-                var userCompanies = _userAppService.GetAllUserCoursesByUserId(id);
-
-                if (userCompanies == null)
-                    return NoContent();
-
-
-                return Ok(userCompanies);
+                return ReturnResponse(userCommand, userCommand, null);
             }
             catch (Exception e)
             {

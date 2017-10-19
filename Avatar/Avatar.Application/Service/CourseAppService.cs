@@ -3,30 +3,42 @@ using System;
 using System.Collections.Generic;
 using Avatar.Application.ViewModel;
 using Avatar.Domain.Interfaces.Services;
+using DomainNotificationHelperCore.Commands;
+using Avatar.Domain.Services.CourseServices;
+using Avatar.Domain.Interfaces.Repository;
+using Avatar.Domain.Commands.CourseCommands;
 
 namespace Avatar.Application.Service
 {
     public class CourseAppService : ICourseAppService
     {
-        private readonly ICourseService _courseService;
+        private readonly ICourseRepository _courseRepository;
 
-        public CourseAppService(ICourseService courseService)
+        public CourseAppService(ICourseRepository courseRepository)
         {
-            _courseService = courseService;
-        }
-        public void CreateCompany(CourseViewModel course)
-        {
-            _courseService.CreateCourse(course.ToDomain());
+            _courseRepository = courseRepository;
         }
 
-        public void DeleteCompany(int id)
+        public Command CreateCourse(CourseViewModel course)
         {
-            throw new NotImplementedException();
+            var courseCommand = course.ToCreateCourseCommand();
+            new CreateCourseService(courseCommand, _courseRepository);
+
+            return courseCommand;
+
         }
 
-        public IEnumerable<CourseViewModel> GetAllCourses()
+        public Command DeleteCourse(int id)
         {
-            return CourseViewModel.ToViewModelList(_courseService.GetAllCourses());
+            var courseCommand = new DeleteCourseCommand(id);
+            new DeleteCourseService(courseCommand, _courseRepository);
+
+            return courseCommand;
+        }
+
+        public IEnumerable<GetAllCourseCommand> GetAllCourses()
+        {
+            return GetAllCourseCommand.ToCommandList(_courseRepository.GetAll());
         }
 
         public CourseViewModel GetCourseById(int id)
@@ -34,9 +46,12 @@ namespace Avatar.Application.Service
             throw new NotImplementedException();
         }
 
-        public CourseViewModel UpdateCourse(CourseViewModel course)
+        public Command UpdateCourse(CourseViewModel course)
         {
-            throw new NotImplementedException();
+            var courseCommand = course.ToUpdateCourseCommand();
+            new UpdateCourseService(courseCommand, _courseRepository);
+
+            return courseCommand;
         }
     }
 }

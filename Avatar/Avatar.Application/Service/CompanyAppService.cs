@@ -4,41 +4,57 @@ using System.Collections.Generic;
 using System.Text;
 using Avatar.Application.ViewModel;
 using Avatar.Domain.Interfaces.Services;
+using Avatar.Domain.Interfaces.Repository;
+using Avatar.Domain.Services.CompanyServices;
+using DomainNotificationHelperCore.Commands;
+using Avatar.Domain.Commands.CompanyCommands;
 
 namespace Avatar.Application.Service
 {
     public class CompanyAppService : ICompanyAppService
     {
-        private readonly ICompanyService _companyService;
+        private readonly ICompanyRepository _companyRepository;
 
-        public CompanyAppService(ICompanyService companyService)
+        public CompanyAppService(ICompanyRepository companyRepository)
         {
-            _companyService = companyService;
+            _companyRepository = companyRepository;
         }
 
-        public void CreateCompany(CompanyViewModel company)
+        public Command CreateCompany(CompanyViewModel company)
         {
-            _companyService.CreateCompany(company.ToDomain());
+            var companyCommand = company.ToCreateCompanyCommand();
+            new CreateCompanyService(companyCommand, _companyRepository);
+
+            return companyCommand;
         }
 
-        public void DeleteCompany(int id)
+        public Command DeleteCompany(int id)
         {
-            throw new NotImplementedException();
+            var companyCommand = new DeleteCompanyCommand(id);
+            new DeleteCompanyService(companyCommand, _companyRepository);
+
+            return companyCommand;
         }
 
-        public IEnumerable<CompanyViewModel> GetAllCompanies()
+        public IEnumerable<GetAllCompaniesCommand> GetAllCompanies()
         {
-            return CompanyViewModel.ToViewModelList(_companyService.GetAllCompanies());
+            return new GetAllCompaniesCommand().ToCommandList(_companyRepository.GetAll());
         }
 
-        public CompanyViewModel GetCompanyById(int id)
+        public Command GetCompanyById(int id)
         {
-            throw new NotImplementedException();
+            var companyCommand = new GetCompanyByIdCommand(id);
+            new GetCompanyByIdService(companyCommand, _companyRepository);
+
+            return companyCommand;
         }
 
-        public CompanyViewModel UpdateCompany(CompanyViewModel company)
+        public Command UpdateCompany(CompanyViewModel company)
         {
-            throw new NotImplementedException();
+            var companyCommand = company.ToUpdateCompanyCommand();
+            new UpdateCompanyService(companyCommand, _companyRepository);
+
+            return companyCommand;
         }
     }
 }

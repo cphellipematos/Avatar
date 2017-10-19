@@ -16,6 +16,7 @@ namespace Avatar.Infra.Data.Repository.Repository
         {
         }
 
+        
         public IEnumerable<User> GetAllUserCompaniesByUserId(int userId)
         {
             var userCompanies =
@@ -39,5 +40,17 @@ namespace Avatar.Infra.Data.Repository.Repository
 
             return userCourses;
         }
+
+        public User GetUserByEmail(string email)
+        {
+            var user =
+                Db.User
+                .Where(x => x.Email == email)
+                .FirstOrDefault();
+           
+            return user;
+        }
+
+
     }
 }

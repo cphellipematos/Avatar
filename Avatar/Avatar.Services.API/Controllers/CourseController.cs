@@ -7,20 +7,24 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Avatar.Application.ViewModel;
 using Avatar.Application.Interfaces;
+using Avatar.Infra.Data.Repository.Interfaces;
+using Avatar.Domain.Commands.CourseCommands;
 
 namespace Avatar.Services.API.Controllers
 {
     [Produces("application/json")]
     [Route("api/v1/course")]
-    public class CourseController : Controller
+    public class CourseController : BaseController
     {
         private readonly ICourseAppService _courseAppService;
-        public CourseController(ICourseAppService courseAppService)
+        public CourseController(ICourseAppService courseAppService, IUnitOfWork uow)
+            : base(uow)
+
         {
             _courseAppService = courseAppService;
         }
-        
-        
+
+
         /// <summary>
         /// Create Company
         /// </summary>
@@ -31,19 +35,42 @@ namespace Avatar.Services.API.Controllers
         /// <response code="400">Bad Request</response> 
         [HttpPost]
         [SwaggerOperation("CreateCourse")]
-        public virtual IActionResult CreateCompany(CourseViewModel course)
+        public virtual IActionResult CreateCourse(CourseViewModel course)
         {
             try
             {
-                _courseAppService.CreateCompany(course);
+                var courseCommand = _courseAppService.CreateCourse(course);
 
-                return Ok();
+                return ReturnResponse(courseCommand, courseCommand, null);
             }
             catch (Exception e)
             {
                 return BadRequest("Message: " + e.Message);
             }
 
+        }
+
+        /// <summary>
+        /// Delete user
+        /// </summary>
+        /// <remarks>This can only be done by the logged in user.</remarks>
+        /// <param name="id">The course id that needs to be deleted</param>
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad Request</response> 
+        [HttpDelete]
+        [Route("{id}")]
+        [SwaggerOperation("DeleteCourse")]
+        public virtual IActionResult DeleteCourse([FromRoute]int id)
+        {
+            try
+            {
+                var serverCommand = _courseAppService.DeleteCourse(id);
+                return ReturnResponse(serverCommand, "Course Deleted!", null);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Error: " + e.Message);
+            }
         }
 
         /// <summary>
@@ -54,18 +81,15 @@ namespace Avatar.Services.API.Controllers
         /// <response code="204">No Content</response>
         /// <response code="400">Bad Request</response> 
         [HttpGet]
-        [SwaggerOperation("GetCompanies")]
-        [SwaggerResponse(200, type: typeof(CompanyViewModel))]
-        public virtual IActionResult GetCompanies()
+        [SwaggerOperation("GetCourses")]
+        [SwaggerResponse(200, type: typeof(GetAllCourseCommand))]
+        public virtual IActionResult GetAllCourses()
         {
             try
             {
-                var courses = _courseAppService.GetAllCourses();
+                var coursesCommand = _courseAppService.GetAllCourses();
 
-                if (courses == null)
-                    return NoContent();
-
-                return Ok(courses);
+                return ReturnResponse(coursesCommand);
             }
             catch (Exception e)
             {
@@ -82,10 +106,19 @@ namespace Avatar.Services.API.Controllers
         /// <response code="204">No Content</response>
         /// <response code="400">Bad Request</response> 
         [HttpPut]
-        [SwaggerOperation("UpdateCompany")]
-        public virtual void UpdateCompany([FromBody]CompanyViewModel company)
+        [SwaggerOperation("UpdateCourse")]
+        public virtual IActionResult UpdateCompany([FromBody]CourseViewModel course)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var courseCommand = _courseAppService.UpdateCourse(course);
+
+                return ReturnResponse(courseCommand, courseCommand, null);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Error: " + e.Message);              
+            }
         }
     }
 }

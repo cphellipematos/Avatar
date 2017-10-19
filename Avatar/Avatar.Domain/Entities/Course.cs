@@ -11,9 +11,8 @@ namespace Avatar.Domain.Entities
 
         }
 
-        public Course(int id, string name, string company, string description, int id_user, int id_durationType)
-        {
-            Id = id;
+        public Course(string name, string company, string description, int id_user, int id_durationType)
+        {            
             Name = name;
             Company = company;
             Description = description;

@@ -17,19 +17,22 @@ namespace Avatar.Infra.Data.Repository.Repository
         public Repository(AvatarContext context)
         {
             Db = context;
-            DbSet = Db.Set<TEntity>();
+            DbSet = Db.Set<TEntity>();            
         }
 
         public virtual void Create(TEntity obj)
         {
             DbSet.Add(obj);
-
-            Db.SaveChanges();
         }
 
         public virtual void Delete(int id)
         {
             DbSet.Remove(DbSet.Find(id));
+        }
+
+        public void Dispose()
+        {
+            Db.Dispose();
         }
 
         public virtual IEnumerable<TEntity> GetAll()
@@ -42,13 +45,9 @@ namespace Avatar.Infra.Data.Repository.Repository
             return DbSet.Find(id);
         }
 
-        public virtual TEntity Update(TEntity obj)
+        public virtual void Update(TEntity obj)
         {
-            var entry = Db.Entry(obj);
-            DbSet.Attach(obj);
-            entry.State = EntityState.Modified;
-
-            return obj;
+            DbSet.Update(obj);            
         }
     }
 }

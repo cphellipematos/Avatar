@@ -11,15 +11,14 @@ namespace Avatar.Domain.Entities
         {
             
         }
-        public Company(int id, string name, string description, string role, int id_user, int id_durationType)
+        public Company(string name, string description, string role, int idUser, int idDurationType)
         {
-            Id = id;
             Name = name;
             Role = role;
             Description = description;
 
-            UserId = id_user;
-            DurationTypeId = id_durationType;
+            UserId = idUser;
+            DurationTypeId = idDurationType;
         }
         #endregion
 

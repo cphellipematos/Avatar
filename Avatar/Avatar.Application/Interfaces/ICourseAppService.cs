@@ -1,4 +1,6 @@
 ﻿using Avatar.Application.ViewModel;
+using Avatar.Domain.Commands.CourseCommands;
+using DomainNotificationHelperCore.Commands;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,10 +9,10 @@ namespace Avatar.Application.Interfaces
 {
     public interface ICourseAppService
     {
-        void CreateCompany(CourseViewModel course);
-        void DeleteCompany(int id);
+        Command CreateCourse(CourseViewModel course);
+        Command DeleteCourse(int id);
         CourseViewModel GetCourseById(int id);
-        IEnumerable<CourseViewModel> GetAllCourses();
-        CourseViewModel UpdateCourse(CourseViewModel course);
+        IEnumerable<GetAllCourseCommand> GetAllCourses();
+        Command UpdateCourse(CourseViewModel course);
     }
 }

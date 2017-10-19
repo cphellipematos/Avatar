@@ -1,4 +1,5 @@
-﻿using Avatar.Domain.Entities;
+﻿using Avatar.Domain.Commands.CompanyCommands;
+using Avatar.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,9 +15,21 @@ namespace Avatar.Application.ViewModel
         public int idUser { get; set; }
         public int idDurationType { get; set; }
 
+
+        public CreateCompanyCommand ToCreateCompanyCommand()
+        {
+            return new CreateCompanyCommand(id, name, role, description, idUser, idDurationType);
+        }
+
+        public UpdateCompanyCommand ToUpdateCompanyCommand()
+        {
+            return new UpdateCompanyCommand(id, name, role, description, idUser, idDurationType);
+        }
+
         public static CompanyViewModel ToViewModel(Company company)
         {
-            return new CompanyViewModel() {
+            return new CompanyViewModel()
+            {
                 id = company.Id,
                 name = company.Name,
                 description = company.Description,
@@ -38,7 +51,7 @@ namespace Avatar.Application.ViewModel
 
         public Company ToDomain()
         {
-            return new Company(id, name, description, role, idUser, idDurationType);
+            return new Company(name, description, role, idUser, idDurationType);
         }
     }
 }

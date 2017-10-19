@@ -1,4 +1,5 @@
-﻿using Avatar.Domain.Entities;
+﻿using Avatar.Domain.Commands.CourseCommands;
+using Avatar.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,9 +16,12 @@ namespace Avatar.Application.ViewModel
         public int idUser { get; set; }
         public int idDurationType { get; set; }
 
-        public Course ToDomain()
+        public CreateCourseCommand ToCreateCourseCommand() {
+            return new CreateCourseCommand(name, company, description, idDurationType, idUser);
+        }
+        public UpdateCourseCommand ToUpdateCourseCommand()
         {
-            return new Course(id, name, company, description, idUser, idDurationType);
+            return new UpdateCourseCommand(id, name, company, description, idUser, idDurationType);
         }
 
         public static CourseViewModel ToViewModel(Course course)

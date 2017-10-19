@@ -10,4 +10,12 @@
     <None Remove="IN\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="DomainNotificationHelperCore" Version="1.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\DurationTypeServices\" />
+  </ItemGroup>
+
 </Project>

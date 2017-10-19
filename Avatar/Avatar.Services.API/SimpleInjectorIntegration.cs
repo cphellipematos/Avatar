@@ -35,8 +35,6 @@ namespace Avatar.Services.API
             container.RegisterMvcViewComponents(app);
 
             SimpleInjectorInitialize.ApplicationServices(container);
-        }
-
-        
+        }        
     }
 }
