@@ -4,7 +4,7 @@ My own avatar website.
 
 This is a place where I decided to show my skills and development basis web concepts. Here You can find some concepts as SOLID, OOP, Clean Code, Domain Notification, Fluent Mapping and Repository Pattern. 
 
-Domain Notification refference - https://github.com/andrebaltieri/DomainNotificationHelperCore
+Domain Notification reference - https://github.com/andrebaltieri/DomainNotificationHelperCore
 
 # Technologies
 - .Net Core C#
