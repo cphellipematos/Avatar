@@ -6,6 +6,9 @@ using Swashbuckle.AspNetCore.Swagger;
 using SimpleInjector;
 using Avatar.Infra.Data.Repository.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Owin.Security.OAuth;
+using Microsoft.AspNetCore.Http;
+using System;
 
 namespace Avatar.Services.API
 {
@@ -24,8 +27,6 @@ namespace Avatar.Services.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //services.AddDbContext<AvatarContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
             services.SimpleInjector(container);
             services.AddSwaggerGen(c =>
@@ -49,6 +50,19 @@ namespace Avatar.Services.API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+
+            OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
+            {
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                Provider = new SimpleAuthorizationServerProvider()
+            };
+
+            // Token Generation
+            app.useO
+            app.UseOAuthAuthorizationServer(OAuthServerOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
             app.UseMvc();
         }

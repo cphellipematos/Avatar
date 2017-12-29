@@ -8,6 +8,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Avatar.Application.ViewModel;
 using Avatar.Application.Interfaces;
 using Avatar.Infra.Data.Repository.Interfaces;
+using Avatar.Domain.Commands.DurationTypeCommands;
 
 namespace Avatar.Services.API.Controllers
 {
@@ -37,7 +38,7 @@ namespace Avatar.Services.API.Controllers
         /// <response code="400">Bad Request</response> 
         [HttpGet]
         [SwaggerOperation("GetDurationType")]
-        [SwaggerResponse(200, type: typeof(DurationTypeViewModel))]
+        [SwaggerResponse(200, type: typeof(GetDurationTypeCommand))]
         public virtual IActionResult GetDurationType()
         {
             try
