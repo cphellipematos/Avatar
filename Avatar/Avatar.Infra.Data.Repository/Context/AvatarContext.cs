@@ -16,6 +16,7 @@ namespace Avatar.Infra.Data.Repository.Context
         public DbSet<User> User { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Company> Company { get; set; }
+        public DbSet<Skill> Skill { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

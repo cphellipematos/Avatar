@@ -26,6 +26,7 @@ namespace Avatar.Services.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
 
             services.AddMvc();
             services.SimpleInjector(container);
@@ -44,6 +45,9 @@ namespace Avatar.Services.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(builder =>
+                builder.WithOrigins("http://localhost:4200"));
+
             app.SimpleInjector(container);
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -51,18 +55,6 @@ namespace Avatar.Services.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
-            OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
-            {
-                AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                Provider = new SimpleAuthorizationServerProvider()
-            };
-
-            // Token Generation
-            app.useO
-            app.UseOAuthAuthorizationServer(OAuthServerOptions);
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
             app.UseMvc();
         }

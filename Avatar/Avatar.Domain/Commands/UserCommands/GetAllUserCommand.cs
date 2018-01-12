@@ -17,8 +17,7 @@ namespace Avatar.Domain.Commands.UserCommands
             return new GetAllUserCommand()
             {
                 id = user.Id,
-                name = user.Name,
-                email = user.Email
+                name = user.Name
             };
         }
 

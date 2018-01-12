@@ -12,6 +12,10 @@ namespace Avatar.Domain.Commands.UserCommands
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        public string Title { get; set; }
+        public string Linkedin { get; set; }
+        public string Github { get; set; }
+
 
         public GetUserByIdCommand(int id)
         {
@@ -24,7 +28,9 @@ namespace Avatar.Domain.Commands.UserCommands
         {
             Id = user.Id;
             Name = user.Name;
-            Email = user.Email;
+            Title = user.Title;
+            Linkedin = user.Linkedin;
+            Github = user.Github;
 
             return this;
         }

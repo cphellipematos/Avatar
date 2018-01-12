@@ -22,6 +22,10 @@ namespace Avatar.Infra.Data.Repository.Mapping
                 .HasMany(x => x.Courses)
                 .WithOne(x => x.User);
 
+            builder
+                .HasMany(x => x.Skills)
+                .WithOne(x => x.User);
+
         }
     }
 }

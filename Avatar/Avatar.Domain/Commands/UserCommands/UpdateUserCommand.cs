@@ -26,7 +26,6 @@ namespace Avatar.Domain.Commands.UserCommands
         {
             Id = user.Id;
             Name = user.Name;
-            Email = user.Email;
 
             return this;
         }
