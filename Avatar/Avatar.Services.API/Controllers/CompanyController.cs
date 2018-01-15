@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using Avatar.Application.ViewModel;
 using Avatar.Application.Interfaces;
 using Avatar.Infra.Data.Repository.Interfaces;
+using Avatar.Application.ViewModel;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Avatar.Domain.Commands.CompanyCommands;
 
 namespace Avatar.Services.API.Controllers
 {
@@ -20,15 +20,20 @@ namespace Avatar.Services.API.Controllers
         {
             _companyAppService = companyAppService;
         }
+
         /// <summary>
         /// Create Company
         /// </summary>
         /// <remarks>This can only be done by the logged in user.</remarks>
         /// <param name="company">Created company object</param>
-        /// <response code="0">successful operation</response>
+        /// <response code="200">Successful Operation</response>
+        /// <response code="204">No Content</response>
+        /// <response code="400">Bad Request</response> 
         [HttpPost]
-        [SwaggerOperation("CreateCompany")]
-        public virtual IActionResult CreateCompany(CompanyViewModel company)
+        [SwaggerOperation("PostCompany")]
+        [SwaggerResponse(200, type: typeof(CreateCompanyCommand))]
+        [SwaggerResponse(400, type: typeof(BadRequestObjectResult))]
+        public virtual IActionResult CreateCompany([FromBody]CompanyViewModel company)
         {
             try
             {
@@ -43,19 +48,17 @@ namespace Avatar.Services.API.Controllers
 
         }
 
-
         /// <summary>
-        /// Delete company
+        /// Delete Company
         /// </summary>
         /// <remarks>This can only be done by the logged in user.</remarks>
-        /// <param name="id">The company that needs to be deleted</param>
+        /// <param name="id">The company id that needs to be deleted</param>
         /// <response code="200">OK</response>
-        /// <response code="400">Invalid username supplied</response>
-        /// <response code="404">User not found</response>
+        /// <response code="400">Bad Request</response> 
         [HttpDelete]
-        [Route("/{id}")]
+        [Route("{id}")]
         [SwaggerOperation("DeleteCompany")]
-        [SwaggerResponse(200, type: typeof(CompanyViewModel))]
+        [SwaggerResponse(200, type: typeof(DeleteCompanyCommand))]
         public virtual IActionResult DeleteCompany([FromRoute]int id)
         {
             try
@@ -71,15 +74,15 @@ namespace Avatar.Services.API.Controllers
         }
 
         /// <summary>
-        /// Get Companies
+        /// Get Courses
         /// </summary>
         /// <remarks></remarks>
-        /// <response code="200">successful operation</response>
-        /// <response code="400">Invalid username supplied</response>
-        /// <response code="404">User not found</response>
+        /// <response code="200">Successful Operation</response>
+        /// <response code="204">No Content</response>
+        /// <response code="400">Bad Request</response> 
         [HttpGet]
         [SwaggerOperation("GetCompanies")]
-        [SwaggerResponse(200, type: typeof(CompanyViewModel))]
+        [SwaggerResponse(200, type: typeof(GetAllCompaniesCommand))]
         public virtual IActionResult GetAllCompanies()
         {
             try
@@ -95,17 +98,16 @@ namespace Avatar.Services.API.Controllers
         }
 
         /// <summary>
-        /// Get company
+        /// Get Company
         /// </summary>
         /// <remarks></remarks>
-        /// <param name="id">Return Company</param>
-        /// <response code="200">successful operation</response>
-        /// <response code="400">Invalid username supplied</response>
-        /// <response code="404">User not found</response>
+        /// <response code="200">Successful Operation</response>
+        /// <response code="204">No Content</response>
+        /// <response code="400">Bad Request</response> 
         [HttpGet]
         [Route("/{id}")]
-        [SwaggerOperation("GetCompanyById")]
-        [SwaggerResponse(200, type: typeof(CompanyViewModel))]
+        [SwaggerOperation("GetCompany")]
+        [SwaggerResponse(200, type: typeof(GetCompanyByIdCommand))]
         public virtual IActionResult GetCompanyById([FromRoute]int id)
         {
             try
@@ -120,17 +122,17 @@ namespace Avatar.Services.API.Controllers
             }
         }
 
-
         /// <summary>
-        /// Updated company
+        /// Update Company
         /// </summary>
         /// <remarks>This can only be done by the logged in user.</remarks>       
         /// <param name="company">Updated company object</param>
-        /// <response code="200">OK</response>
-        /// <response code="400">Invalid user supplied</response>
-        /// <response code="404">User not found</response>
+        /// <response code="200">Successful Operation</response>
+        /// <response code="204">No Content</response>
+        /// <response code="400">Bad Request</response> 
         [HttpPut]
         [SwaggerOperation("UpdateCompany")]
+        [SwaggerResponse(200, type: typeof(UpdateCompanyCommand))]
         public virtual IActionResult UpdateCompany([FromBody]CompanyViewModel company)
         {
             try

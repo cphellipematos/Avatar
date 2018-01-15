@@ -30,7 +30,7 @@ namespace Avatar.Services.API.Controllers
 
         #region Actions        
         /// <summary>
-        /// Get users
+        ///
         /// </summary>
         /// <remarks></remarks>
         /// <response code="200">Successful Operation</response>

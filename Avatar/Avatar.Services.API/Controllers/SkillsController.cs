@@ -25,7 +25,7 @@ namespace Avatar.Services.API.Controllers
         }
 
         /// <summary>
-        /// Get skills
+        /// 
         /// </summary>
         /// <remarks></remarks>
         /// <response code="200">successful operation</response>

@@ -24,13 +24,13 @@ namespace Avatar.Services.API.Controllers
         }
 
         /// <summary>
-        /// Get skills
+        /// 
         /// </summary>
         /// <remarks></remarks>
         /// <response code="200">successful operation</response>
         /// <response code="400">Bad Request</response> 
         [HttpGet]
-        [SwaggerOperation("GetSkills")]
+        [SwaggerOperation("GetPortfolios")]
         [SwaggerResponse(200, type: typeof(IEnumerable<PortfolioViewModel>))]
         public virtual IActionResult GetSkills()
         {

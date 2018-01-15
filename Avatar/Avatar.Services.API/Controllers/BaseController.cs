@@ -17,7 +17,7 @@ namespace Avatar.Services.API.Controllers
             _uow = uow;
         }
 
-        public IActionResult ReturnResponse(Command service, object success, object error)
+        protected IActionResult ReturnResponse(Command service, object success, object error)
         {
             if (service.HasNotifications())
                 return BadRequest(new {
@@ -30,7 +30,7 @@ namespace Avatar.Services.API.Controllers
             return Ok(new { success = true, data = success });
         }
 
-        public IActionResult ReturnResponse(object success)
+        protected IActionResult ReturnResponse(object success)
         {
             _uow.Commit();
             return Ok(new { success = true, data = success });

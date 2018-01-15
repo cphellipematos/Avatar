@@ -12,7 +12,6 @@ using Avatar.Domain.Commands.CourseCommands;
 
 namespace Avatar.Services.API.Controllers
 {
-    [Produces("application/json")]
     [Route("api/v1/course")]
     public class CourseController : BaseController
     {
@@ -26,7 +25,7 @@ namespace Avatar.Services.API.Controllers
 
 
         /// <summary>
-        /// Create Company
+        /// 
         /// </summary>
         /// <remarks>This can only be done by the logged in user.</remarks>
         /// <param name="company">Created company object</param>
@@ -34,7 +33,8 @@ namespace Avatar.Services.API.Controllers
         /// <response code="204">No Content</response>
         /// <response code="400">Bad Request</response> 
         [HttpPost]
-        [SwaggerOperation("CreateCourse")]
+        [SwaggerOperation("PostCourse")]
+        [SwaggerResponse(200, type: typeof(GetAllCourseCommand))]
         public virtual IActionResult CreateCourse(CourseViewModel course)
         {
             try
@@ -51,7 +51,7 @@ namespace Avatar.Services.API.Controllers
         }
 
         /// <summary>
-        /// Delete user
+        /// 
         /// </summary>
         /// <remarks>This can only be done by the logged in user.</remarks>
         /// <param name="id">The course id that needs to be deleted</param>
@@ -60,6 +60,7 @@ namespace Avatar.Services.API.Controllers
         [HttpDelete]
         [Route("{id}")]
         [SwaggerOperation("DeleteCourse")]
+        [SwaggerResponse(200, type: typeof(GetAllCourseCommand))]
         public virtual IActionResult DeleteCourse([FromRoute]int id)
         {
             try
@@ -74,7 +75,7 @@ namespace Avatar.Services.API.Controllers
         }
 
         /// <summary>
-        /// Get Companies
+        /// 
         /// </summary>
         /// <remarks></remarks>
         /// <response code="200">Successful Operation</response>
@@ -98,7 +99,7 @@ namespace Avatar.Services.API.Controllers
         }
 
         /// <summary>
-        /// Updated company
+        /// 
         /// </summary>
         /// <remarks>This can only be done by the logged in user.</remarks>       
         /// <param name="company">Updated company object</param>
