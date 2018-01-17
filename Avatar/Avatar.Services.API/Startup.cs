@@ -46,7 +46,7 @@ namespace Avatar.Services.API
             }
 
             app.UseCors(builder =>
-                builder.WithOrigins("http://localhost:4200"));
+                builder.WithOrigins("http://www.limonarte.com.br"));
 
             app.SimpleInjector(container);
             app.UseSwagger();

@@ -11,6 +11,7 @@ using Avatar.Application.Interfaces;
 using System.Net.Http;  
 using System.Net;
 using Avatar.Infra.Data.Repository.Interfaces;
+using Avatar.Domain.Commands.UserCommands;
 
 namespace Avatar.Services.API.Controllers
 {
@@ -84,7 +85,7 @@ namespace Avatar.Services.API.Controllers
         [HttpGet]
         [Route("{id}")]
         [SwaggerOperation("GetUserById")]
-        [SwaggerResponse(200, type: typeof(UserViewModel))]
+        [SwaggerResponse(200, type: typeof(GetUserByIdCommand))]
         public virtual IActionResult GetUserById([FromRoute]int id)
         {
             try
