@@ -26,8 +26,7 @@ namespace Avatar.Services.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
-
+            services.AddCors();            
             services.AddMvc();
             services.SimpleInjector(container);
             services.AddSwaggerGen(c =>
@@ -46,7 +45,7 @@ namespace Avatar.Services.API
             }
 
             app.UseCors(builder =>
-                builder.WithOrigins("http://www.limonarte.com.br"));
+                builder.WithOrigins("http://www.cphellipematos.com"));
 
             app.SimpleInjector(container);
             app.UseSwagger();

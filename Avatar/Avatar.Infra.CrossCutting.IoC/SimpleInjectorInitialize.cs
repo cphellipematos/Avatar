@@ -25,21 +25,25 @@ namespace Avatar.Data.CrossCutting.IoC
             // UoW
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
 
-            // App
-            container.Register<IUserAppService, UserAppService>(Lifestyle.Scoped);
+            // App            
             container.Register<ICompanyAppService, CompanyAppService>(Lifestyle.Scoped);
-            container.Register<IDurationTypeAppService, DurationTypeAppService>(Lifestyle.Scoped);
+            container.Register<IContactAppService, ContactAppService>(Lifestyle.Scoped);
             container.Register<ICourseAppService, CourseAppService>(Lifestyle.Scoped);
+            container.Register<IDurationTypeAppService, DurationTypeAppService>(Lifestyle.Scoped);            
             container.Register<ISkillAppService, SkillAppService>(Lifestyle.Scoped);
             container.Register<IPortfolioAppService, PortfolioAppService>(Lifestyle.Scoped);
+            container.Register<IUserAppService, UserAppService>(Lifestyle.Scoped);
 
-            // Infra Repository
-            container.Register<IUserRepository, UserRepository>(Lifestyle.Scoped);
+
+
+            // Infra Repository            
             container.Register<ICompanyRepository, CompanyRepository>(Lifestyle.Scoped);
-            container.Register<IDurationTypeRepository, DurationTypeRepository>(Lifestyle.Scoped);
+            container.Register<IContactRepository, ContactRepository>(Lifestyle.Scoped);
             container.Register<ICourseRepository, CourseRepository>(Lifestyle.Scoped);
+            container.Register<IDurationTypeRepository, DurationTypeRepository>(Lifestyle.Scoped);            
             container.Register<ISkillRepository, SkillRepository>(Lifestyle.Scoped);
             container.Register<IPortfolioRepository, PortfolioRepository>(Lifestyle.Scoped);
+            container.Register<IUserRepository, UserRepository>(Lifestyle.Scoped);
 
             // Infra Dados
             container.Register<AvatarContext>(Lifestyle.Scoped);                       

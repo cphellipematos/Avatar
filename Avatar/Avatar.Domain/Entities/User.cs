@@ -28,6 +28,8 @@ namespace Avatar.Domain.Entities
         public virtual ICollection<Skill> Skills { get; set; }
 
         public virtual ICollection<Portfolio> Portfolios{ get; set; }
+
+        public virtual ICollection<Contact> Contacts { get; set; }
         #endregion
 
         #region Constructors
@@ -37,6 +39,7 @@ namespace Avatar.Domain.Entities
             this.Courses = new List<Course>();
             this.Skills = new List<Skill>();
             this.Portfolios = new List<Portfolio>();
+            this.Contacts = new List<Contact>();
         }
         public User(string name, string email)
         {            
