@@ -45,7 +45,10 @@ namespace Avatar.Services.API
             }
 
             app.UseCors(builder =>
-                builder.WithOrigins("http://www.cphellipematos.com"));
+                builder.WithOrigins("http://localhost:4200"));
+
+            app.UseCors(options=>
+                options.WithMethods("http://localhost:4200").AllowAnyMethod());
 
             app.SimpleInjector(container);
             app.UseSwagger();

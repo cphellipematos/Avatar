@@ -4,6 +4,7 @@ using Avatar.Infra.Data.Repository.UoW;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Avatar.Application.ViewModel;
 using Avatar.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Avatar.Services.API.Controllers
 {

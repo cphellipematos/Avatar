@@ -13,6 +13,14 @@ namespace Avatar.Infra.Data.Repository.Context
         {
 
         }
+
+        //For tests
+        public AvatarContext(DbContextOptions<AvatarContext> options)
+            :base(options)
+        {
+
+        }
+
         public DbSet<User> User { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Company> Company { get; set; }
@@ -21,23 +29,25 @@ namespace Avatar.Infra.Data.Repository.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.AddConfiguration(new CompanyMap());            
-            modelBuilder.AddConfiguration(new UserMap());
-            //modelBuilder.AddConfiguration(new CategoryMap());            
+            modelBuilder.AddConfiguration(new UserMap());         
             modelBuilder.AddConfiguration(new DurationTypeMap());
             modelBuilder.AddConfiguration(new CourseMap());
-
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // get the configuration from the app settings
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
+            //Condition used to test configuration
+            if (!optionsBuilder.IsConfigured)
+            {            
+                // get the configuration from the app settings
+                var config = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
 
-            // define the database to use
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+                // define the database to use
+                optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+            }
         }
     }
 }

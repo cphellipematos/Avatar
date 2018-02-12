@@ -2,6 +2,7 @@
 using DomainNotificationHelperCore.Assertions;
 using DomainNotificationHelperCore.Commands;
 
+
 namespace Avatar.Domain.Commands.UserCommands
 {
     public class CreateUserCommand : Command
@@ -23,10 +24,11 @@ namespace Avatar.Domain.Commands.UserCommands
             return new User(Name, Email);
         }
 
-        public void Validate()
+        protected void Validate()
         {
-            AddNotification(Assert.IsNotNull(Name, "User Name", "Please, provide a Username"));
-            AddNotification(Assert.IsNotNull(Email, "Email", "Please, provide a E-mail!"));
+            AddNotification(Assert.NotEmpty(Name, "Empty User Name", "Please, provide a Username"));            
+            AddNotification(Assert.NotEmpty(Email, "Empty Email", "Please, provide a E-mail!"));
         }
+
     }
 }

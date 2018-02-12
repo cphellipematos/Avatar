@@ -44,6 +44,7 @@ namespace Avatar.Domain.Entities
         public User(string name, string email)
         {            
             Name = name;
+            Email = email;
             InsertDate = DateTime.Now;
             UpdateDate = DateTime.Now;
         }
