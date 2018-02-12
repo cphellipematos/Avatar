@@ -16,11 +16,11 @@ Domain Notification reference - https://github.com/andrebaltieri/DomainNotificat
 # How it's going to be done!
 ### FrontEnd
 ```
-Future ReactJS application with Redux
+AngularJS 2 Application
 ```
 ### BackEnd
 ```
-Four layers solution (API, Application, Domain, Infra)
+Four layers solution (API, Application, Domain, Infra and Tests)
 ```
 
 
@@ -49,6 +49,10 @@ api/v1/user/company (PATCH) - Json object on body request
 
 As Object Relational Mapping (ORM) is going to be used DAPPER and EnityFramework Core.
 
+#### TESTS 
+- Tests were created to make sure that COMMANDs have the perfect behavour and SERVICES are able to works with rule's application. 
+
+UseInMemoryDataBase where used instead MOQ. 
 
 <br><br>
 
